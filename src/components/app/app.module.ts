@@ -6,7 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatButtonModule } from '@angular/material/button'; 
 
 const routing = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routing = [
     RouterModule.forRoot(routing),
     BrowserAnimationsModule,
     MatCardModule,
-    NgbModule
+    NgbModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
