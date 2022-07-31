@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Recipe } from '../models/recipe';
 
 
 @Component({
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeComponent implements OnInit {
-cards: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  cards: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  recipe: Recipe = new Recipe(1, "fruitsalade", "f", ["peer", "banaan", "appel", "kiwi"], "Cut all the ingredïents \n put them all togethere in a bowl", true, 1,1, "Freek");
+  recipes: Array<Recipe> = [this.recipe];
+
   constructor() { }
 
   ngOnInit(): void {

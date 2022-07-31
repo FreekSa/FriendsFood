@@ -3,7 +3,13 @@
     margin: 1em;
 }
 
-.image{
-    max-width: 300px;
-    margin: 0,1em ,0,1em;
+.image {
+  max-height: 400px;
+  margin: 0,1em,0,1em;
+}
+
+.header{
+    padding: 1em;
+    justify-content: center;
+    text-align: center;
 }
