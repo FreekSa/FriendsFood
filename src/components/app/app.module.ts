@@ -7,7 +7,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatButtonModule } from '@angular/material/button'; 
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { RecipeFormComponent } from './recipe-form/recipe-form.component';
+
 
 const routing = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,7 +21,8 @@ const routing = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    RecipeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +30,9 @@ const routing = [
     BrowserAnimationsModule,
     MatCardModule,
     NgbModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   recipes: Array<Recipe> = [this.recipe];
   // base64 encoded image
   image: string = new ImageFruit().imageFruit;
+
+  
   constructor() { }
 
   ngOnInit(): void {
