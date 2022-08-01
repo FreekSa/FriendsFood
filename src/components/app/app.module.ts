@@ -16,6 +16,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import {MatSelectModule} from '@angular/material/select'; 
 
 const routing = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,7 +43,8 @@ const routing = [
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
