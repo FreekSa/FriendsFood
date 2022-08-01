@@ -13,7 +13,9 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
-
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 const routing = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,7 +39,10 @@ const routing = [
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

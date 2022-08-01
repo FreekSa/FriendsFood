@@ -1,3 +1,47 @@
 <div style="margin: 2em">
-    <p>Recipe form</p>
+    <div class="row">
+        <div class="col-lg">
+            <div class="col-sm">
+                <mat-form-field>
+                    <mat-label>Titel</mat-label>
+                    <input matInput placeholder="Titel" />
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Ingrediënten</mat-label>
+                        <input matInput placeholder="Ingrediënten" />
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <button mat-raised-button color="primary">Voeg ingredient toe</button>
+                </div>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Beschrijving</mat-label>
+                    <textarea matInput placeholder="Beschrijving"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="col-md">
+                <mat-form-field>
+                    <mat-label>Aantal personen</mat-label>
+                    <input matInput type=number pattern="\d*" placeholder="Aantal personen" />
+                </mat-form-field>
+                <mat-checkbox style="margin-left: 1em;">Vegan</mat-checkbox>
+            </div>
+            <div class="row">
+            </div>
+    
+            <mat-form-field>
+                <mat-label>Duurtijd</mat-label>
+                <input matInput placeholder="Duurtijd" #Duurtijd />
+                <mat-hint>kort = minder dan 15 min <br> gemiddeld = 15 - 30 minuten <br> lang = langer dan een half uur
+                </mat-hint>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Voeg recept toe</button>
+
+        </div>
+    </div>
 </div>

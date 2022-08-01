@@ -6,11 +6,11 @@ export class Recipe{
     Description: string = null;
     Vegan: boolean = false;
     Persons: number = 1;
-    PrepTime: number = 0;
+    PrepTime: string = null;
     Autor: string = null;
 
   constructor(Id: number, Title: string, Picture: string, Ingredients: string[], Description: string,
-              Vegan: boolean, Persons: number, PrepTime: number, Autor: string) {
+              Vegan: boolean, Persons: number, PrepTime: string, Autor: string) {
       this.Id = Id;
       this.Title = Title;
       this.Picture = Picture;
