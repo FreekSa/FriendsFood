@@ -28,7 +28,7 @@
             </mat-form-field>
             <mat-checkbox style="margin-left: 1em;">Vegan</mat-checkbox>
         </div>
-        <div class="row">
+        <div class="row" style="height: auto;">
             <div class="col-lg">
                 <mat-form-field>
                         <mat-label>Duurtijd</mat-label>
@@ -43,20 +43,20 @@
                             Lang
                           </mat-option>
                         </mat-select>
-                        <mat-hint>
-                            <ul>
-                                <li>kort = minder dan 15 min</li>
-                                <li>Gemiddeld = 15 - 30 minuten</li>
-                                <li>Lang = langer dan een half uur</li>
-                            </ul>
-                        </mat-hint>
-                </mat-form-field>
+                    </mat-form-field>
+                    <div>
+                        <ul style="padding-left: 1em;">
+                            <li>kort = minder dan 15 min</li>
+                            <li>Gemiddeld = 15 - 30 minuten</li>
+                            <li>Lang = langer dan een half uur</li>
+                        </ul>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg">
-                    <mat-label></mat-label>
-                    <button mat-raised-button color="primary">Voeg recept toe</button>
+                <mat-label></mat-label>
+                <button mat-raised-button color="primary">Voeg recept toe</button>
             </div>
         </div>
     </div>
