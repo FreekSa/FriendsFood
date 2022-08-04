@@ -1,3 +1,25 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button  class="example-icon" (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+      </button>
+      <span>My friends love food</span>
+      <span class="spacer"></span>
+      <button mat-icon-button [routerLink]="'/recipeform'">
+          <mat-icon>add</mat-icon>
+      </button>
+  </mat-toolbar>
+  <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="side" style="width: 150px;">
+          <mat-nav-list>
+              <a mat-list-item href="/home">Recepten</a>
+              <a mat-list-item href="/recipeform">Voeg recept toe</a>
+          </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+
+        
+        
+        
 <div style="margin: 2em;">
 <div class="row">
 <mat-card class="card" *ngFor="let recipe of recipes">
@@ -8,7 +30,7 @@
   <div style="height: 300px;">
     <img mat-card-image class="image" src={{this.image}} alt="image">
   </div>
-    <mat-card-content>
+  <mat-card-content>
       <ul *ngFor="let ingredient of recipe.Ingredients">
         <li>{{ingredient}}</li>
       </ul>
@@ -22,3 +44,6 @@
 </mat-card>
 </div>
 </div>
+
+</mat-sidenav-content>
+</mat-sidenav-container>
