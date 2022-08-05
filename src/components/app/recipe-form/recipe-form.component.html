@@ -31,11 +31,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <mat-form-field>
-                                <mat-chip-list>
-                                    <mat-chip *ngFor="let ingredient of ingredients">{{ingredient}}</mat-chip>
+                            <mat-chip-list>
+                                    <mat-chip *ngFor="let ingredient of ingredients" (removed)="removeIngredient(ingredient)">
+                                        {{ingredient}}
+                                        <button mat-icon-button matChipRemove>
+                                            <mat-icon>cancel</mat-icon>
+                                        </button>
+                                    </mat-chip>
                                 </mat-chip-list>
-                            </mat-form-field>
                         </div>
                         <div class="row">
                             <mat-form-field appearance="fill" style="width: 100%;">

@@ -16,10 +16,19 @@ export class RecipeFormComponent implements OnInit {
   }
 
   addIngredient(ingredient: string): void{
-    console.log(ingredient);
     if(ingredient){
       this.ingredients.push(ingredient);
       this.ingredient = "";
+    }
+  }
+
+  removeIngredient(ingredient: string): void{
+    if(ingredient){
+      const index = this.ingredients.indexOf(ingredient);
+      console.log(index);
+      if(index != -1){
+        this.ingredients.splice(index, 1);
+      }
     }
   }
 }
