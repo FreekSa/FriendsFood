@@ -1,82 +1,72 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button  class="example-icon" (click)="sidenav.toggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span>Voeg een recept toe</span>
-        <span class="spacer"></span>
-    </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="side" style="width: 150px;">
-            <mat-nav-list>
-                <a mat-list-item href="/home">Recepten</a>
-                <a mat-list-item href="/recipeform">Voeg recept toe</a>
-            </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-
 <div style="margin: 2em">
-    <div class="col-lg">
-        <div class="col-sm">
-            <mat-form-field>
-                <mat-label>Titel</mat-label>
-                <input matInput placeholder="Titel" />
-            </mat-form-field>
-        </div>
-        <div class="row">
-            <div class="col">
+    <form *ngForm="">
+        <div class="col-lg">
+            <div class="col-sm">
                 <mat-form-field>
-                    <mat-label>Ingrediënten</mat-label>
-                    <input matInput placeholder="Ingrediënten" />
+                    <mat-label>Titel</mat-label>
+                    <input matInput placeholder="Titel" />
                 </mat-form-field>
-                <button mat-raised-button color="primary" style="margin-left: 0.5em;">Voeg ingrediënt toe</button>
             </div>
-        </div>
-        <div class="row">
-            <mat-form-field appearance="fill" style="width: 100%;">
-                <mat-label>Beschrijving</mat-label>
-                <textarea matInput placeholder="Beschrijving" rows="20"></textarea>
-            </mat-form-field>
-        </div>
-        <div class="col-md">
-            <mat-form-field>
-                <mat-label>Aantal personen</mat-label>
-                <input matInput type=number pattern="\d*" placeholder="Aantal personen" />
-            </mat-form-field>
-            <mat-checkbox style="margin-left: 1em;">Vegan</mat-checkbox>
-        </div>
-        <div class="row" style="height: auto;">
-            <div class="col-lg">
-                <mat-form-field>
-                        <mat-label>Duurtijd</mat-label>
-                        <mat-select>
-                          <mat-option value="Kort">
-                            Kort
-                          </mat-option>
-                          <mat-option value="Gemiddeld">
-                            Gemiddeld
-                          </mat-option>
-                          <mat-option value="Lang">
-                            Lang
-                          </mat-option>
-                        </mat-select>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Ingrediënten</mat-label>
+                        <input matInput placeholder="Ingrediënten" />
                     </mat-form-field>
-                    <div>
-                        <ul style="padding-left: 1em;">
-                            <li>kort = minder dan 15 min</li>
-                            <li>Gemiddeld = 15 - 30 minuten</li>
-                            <li>Lang = langer dan een half uur</li>
-                        </ul>
+                    <button mat-raised-button color="primary" style="margin-left: 0.5em;">Voeg ingredient toe</button>
+                </div>
+            </div>
+            <div class="row">
+                <mat-form-field>
+                    <mat-chip-list>
+                        <mat-chip></mat-chip>
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Beschrijving</mat-label>
+                    <textarea matInput placeholder="Beschrijving" rows="20"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="col-md">
+                <mat-form-field>
+                    <mat-label>Aantal personen</mat-label>
+                    <input matInput type=number pattern="\d*" placeholder="Aantal personen" />
+                </mat-form-field>
+                <mat-checkbox style="margin-left: 1em;">Vegan</mat-checkbox>
+            </div>
+            <div class="row" style="height: auto;">
+                <div class="col-lg">
+                    <mat-form-field>
+                            <mat-label>Duurtijd</mat-label>
+                            <mat-select>
+                              <mat-option value="Kort">
+                                Kort
+                              </mat-option>
+                              <mat-option value="Gemiddeld">
+                                Gemiddeld
+                              </mat-option>
+                              <mat-option value="Lang">
+                                Lang
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <ul style="padding-left: 1em;">
+                                <li>kort = minder dan 15 min</li>
+                                <li>Gemiddeld = 15 - 30 minuten</li>
+                                <li>Lang = langer dan een half uur</li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg">
+                    <mat-label></mat-label>
+                    <button mat-raised-button color="primary">Voeg recept toe</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg">
-                <mat-label></mat-label>
-                <button mat-raised-button color="primary">Voeg recept toe</button>
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
-
-</mat-sidenav-content>
-</mat-sidenav-container>
