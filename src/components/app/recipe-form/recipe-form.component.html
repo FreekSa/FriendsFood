@@ -34,9 +34,7 @@
                             <mat-chip-list>
                                     <mat-chip *ngFor="let ingredient of ingredients" (removed)="removeIngredient(ingredient)">
                                         {{ingredient}}
-                                        <button mat-icon-button matChipRemove>
-                                            <mat-icon>cancel</mat-icon>
-                                        </button>
+                                            <mat-icon matChipRemove>cancel</mat-icon>
                                     </mat-chip>
                                 </mat-chip-list>
                         </div>
