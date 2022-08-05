@@ -6,10 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recipe-form.component.css']
 })
 export class RecipeFormComponent implements OnInit {
+  ingredients: string[] = [];
+
+  ingredient: string = "";
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  addIngredient(ingredient: string): void{
+    console.log(ingredient);
+    if(ingredient){
+      this.ingredients.push(ingredient);
+      this.ingredient = "";
+    }
+  }
 }
