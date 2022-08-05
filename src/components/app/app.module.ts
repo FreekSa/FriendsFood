@@ -19,7 +19,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatChipsModule} from '@angular/material/chips';
 
-
 const routing = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
