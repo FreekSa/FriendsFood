@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeFormComponent implements OnInit {
   ingredients: string[] = [];
-
   ingredient: string = "";
+  amountOfTime = "";
 
   constructor() { }
 
