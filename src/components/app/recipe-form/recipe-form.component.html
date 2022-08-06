@@ -15,19 +15,19 @@
         <mat-sidenav-content>
             <div style="margin: 2em">
                     <div class="col-lg">
-                        <div class="col-sm">
-                            <mat-form-field>
-                                <mat-label>Titel</mat-label>
-                                <input matInput placeholder="Titel" />
-                            </mat-form-field>
-                        </div>
+                        <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Titel</mat-label>
+                                    <input matInput placeholder="Titel" />
+                                </mat-form-field>
+                    </div>
                         <div class="row">
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Ingrediënten</mat-label>
                                     <input matInput placeholder="Ingrediënten" [(ngModel)]="ingredient" />
                                 </mat-form-field>
-                                <button mat-raised-button color="primary" style="margin-left: 0.5em;" (click)="addIngredient(ingredient)">Voeg ingredient toe</button>
+                                <button mat-raised-button color="primary" style="margin-left: 0.5em; margin-bottom: 1em;" (click)="addIngredient(ingredient)">Voeg ingredient toe</button>
                             </div>
                         </div>
                         <div class="row">
@@ -51,7 +51,7 @@
                                 <mat-label>Aantal personen</mat-label>
                                 <input matInput type=number pattern="\d*" placeholder="Aantal personen" />
                             </mat-form-field>
-                            <mat-checkbox style="margin-left: 1em;">Vegan</mat-checkbox>
+                            <mat-checkbox color="primary" style="margin-left: 1em;">Vegan</mat-checkbox>
                         </div>
                         <div class="row" style="height: auto;">
                             <div class="col-lg">
@@ -80,7 +80,6 @@
                         </div>
                         <div class="row">
                             <div class="col-lg">
-                                <mat-label></mat-label>
                                 <button mat-raised-button color="primary">Voeg recept toe</button>
                             </div>
                         </div>
