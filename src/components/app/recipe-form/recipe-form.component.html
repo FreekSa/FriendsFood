@@ -25,9 +25,9 @@
                             <div class="col">
                                 <mat-form-field>
                                     <mat-label>Ingrediënten</mat-label>
-                                    <input matInput placeholder="Ingrediënten" [(ngModel)]="ingredient" />
+                                    <input matInput (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" [(ngModel)]="ingredient" />
                                 </mat-form-field>
-                                <button mat-raised-button color="primary" style="margin-left: 0.5em; margin-bottom: 1em;" (click)="addIngredient(ingredient)">Voeg ingredient toe</button>
+                                <button mat-raised-button type="submit" color="primary" style="margin-left: 0.5em; margin-bottom: 1em;" (click)="addIngredient(ingredient)">Voeg ingredient toe</button>
                             </div>
                         </div>
                         <div class="row">
