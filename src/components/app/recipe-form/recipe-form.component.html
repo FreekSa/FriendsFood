@@ -46,13 +46,13 @@
                     <div class="row">
                         <mat-form-field appearance="fill" style="width: 100%;">
                             <mat-label>Beschrijving</mat-label>
-                            <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description ngModel></textarea>
+                            <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description ngModel required></textarea>
                         </mat-form-field>
                     </div>
                     <div class="col-md">
                         <mat-form-field>
                             <mat-label>Aantal personen</mat-label>
-                            <input matInput type="number" pattern="\d*" min="1" name="Persons" #persons ngModel placeholder="Aantal personen" />
+                            <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons ngModel placeholder="Aantal personen" />
                             <mat-error *ngIf="persons <= 0">Geef een geldig nummer in</mat-error>
                         </mat-form-field>
                         <mat-checkbox color="primary" #vegan name="Vegan" ngModel style="margin-left: 1em;">Vegan</mat-checkbox>
@@ -61,7 +61,7 @@
                         <div class="col-lg">
                             <mat-form-field>
                                 <mat-label>Duurtijd</mat-label>
-                                <mat-select #prepTime name="PrepTime" ngModel>
+                                <mat-select #prepTime name="PrepTime" [(value)]="selectedPrepTime">
                                     <mat-option value="short">
                                         Kort
                                     </mat-option>
@@ -75,11 +75,11 @@
                             </mat-form-field>
                             <div>
                                 <ul style="padding-left: 1em;">
-                                    <li [ngStyle]="{'font-weight': prepTime == 'short' ? 'bold' : 'normal'}">Kort =
+                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'short' ? 'bold' : 'normal'}">Kort =
                                         minder dan 15 min</li>
-                                    <li [ngStyle]="{'font-weight': prepTime == 'medium' ? 'bold' : 'normal'}">Gemiddeld
+                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'medium' ? 'bold' : 'normal'}">Gemiddeld
                                         = 15 - 30 minuten</li>
-                                    <li [ngStyle]="{'font-weight': prepTime == 'long' ? 'bold' : 'normal'}">Lang =
+                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'long' ? 'bold' : 'normal'}">Lang =
                                         langer dan een half uur</li>
                                 </ul>
                             </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg">
-                            <button mat-raised-button color="primary" type="submit" (click)="addRecipe()">Voeg recept toe</button>
+                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit" (click)="addRecipe()">Voeg recept toe</button>
                         </div>
                     </div>
                 </div>
