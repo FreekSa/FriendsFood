@@ -1,5 +1,5 @@
 export class Recipe{
-    Id: number = null;
+    Id: string = null;
     Title: string = null;
     Picture: string = null;
     Ingredients: string[] = null;
@@ -9,7 +9,7 @@ export class Recipe{
     PrepTime: string = null;
     Autor: string = null;
 
-  constructor(Id: number, Title: string, Picture: string, Ingredients: string[], Description: string,
+  constructor(Id: string, Title: string, Picture: string, Ingredients: string[], Description: string,
               Vegan: boolean, Persons: number, PrepTime: string, Autor: string) {
       this.Id = Id;
       this.Title = Title;
