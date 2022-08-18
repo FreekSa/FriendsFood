@@ -64,10 +64,6 @@ export class RecipeFormComponent implements OnInit {
     console.log("voeg recept toe");
   }
 
-  onfocus(event){
-    console.log(event.target);
-  }
-
   onSubmit(recipeForm: NgForm) {
       this.value = recipeForm.value;
       this.recipe = new Recipe(
@@ -79,7 +75,7 @@ export class RecipeFormComponent implements OnInit {
         this.value.Vegan, 
         this.value.Persons, 
         this.selectedPrepTime, 
-        "Freek"
+        this.value.Autor
       ,);
     console.log(this.recipe);
   }

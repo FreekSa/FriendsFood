@@ -17,11 +17,20 @@
             <div style="margin: 2em">
                 <div class="col-lg">
                     <div class="row">
-                        <mat-form-field>
-                            <mat-label>Titel</mat-label>
-                            <input matInput placeholder="Titel" ngModel name="Title" #title="ngModel" required />
-                        </mat-form-field>
+                        <div class="col-md">
+                            <mat-form-field style="width: 100%;">
+                                <mat-label>Titel</mat-label>
+                                <input matInput placeholder="Titel" ngModel name="Title" #title="ngModel" required />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg">
+                            <mat-form-field>
+                                <mat-label>Auteur</mat-label>
+                                <input matInput placeholder="Auteur" ngModel name="Auteur" #auteur="ngModel" required />
+                            </mat-form-field>
+                        </div>
                     </div>
+                </div>
                     <div class="row">
                         <div class="col">
                             <mat-form-field>
@@ -31,7 +40,7 @@
                             <button mat-raised-button color="primary" type="button"
                                 style="margin-left: 0.5em; margin-bottom: 1em;"
                                 (mousedown)="addIngredient(ingredient)">Voeg
-                                ingredient toe</button>
+                                ingrediënt toe</button>
                         </div>
                     </div>
                     <div class="row">
@@ -91,11 +100,16 @@
                                         langer dan een half uur</li>
                                 </ul>
                             </div>
+                            <div class="row">
+                                <div class="col-lg">
+                                    <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">Voeg recept toe</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg">
                             <div class="row">
-                                <mat-form-field class="columns">
-                                    <mat-label>Voeg een foto toe</mat-label>
+                                <mat-form-field>
+                                    <mat-label>Voeg een foto toe via de paperclip</mat-label>
                                     <ng-template #newFile>
                                         <mat-label>Kies foto</mat-label>
                                     </ng-template>
@@ -112,13 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg">
-                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">Voeg recept toe</button>
-                        </div>
-                    </div>
                 </div>
-            </div>
         </form>
     </mat-sidenav-content>
 </mat-sidenav-container>
