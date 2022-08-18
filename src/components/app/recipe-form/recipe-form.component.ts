@@ -17,16 +17,17 @@ export class RecipeFormComponent implements OnInit {
   submitted = false;
   selectedPrepTime = "";
   selectedImage: any;
-  recipe = new Recipe(null, null, null, this.ingredientslist, null, false, null, null, null);
+  recipe: Recipe;
   recipeForm: NgForm;
   value: Recipe;
-  isImageSaved: boolean = false;
   cardImageBase64: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
   CreateBase64String(fileInput: any) {
     if (fileInput.target.files && fileInput.target.files[0]) {
@@ -37,8 +38,6 @@ export class RecipeFormComponent implements OnInit {
         image.onload = rs => {
           const imgBase64Path = e.target.result;
           this.cardImageBase64 = imgBase64Path;         
-          this.isImageSaved = true;
-          console.log(imgBase64Path);
         };
       };
       reader.readAsDataURL(fileInput.target.files[0]);
@@ -46,7 +45,6 @@ export class RecipeFormComponent implements OnInit {
   }
 
   addIngredient(ingredient: string): void {
-    console.log(ingredient);
     if (ingredient) {
       this.ingredientslist.push(ingredient);
       this.ingredient = "";
@@ -56,7 +54,6 @@ export class RecipeFormComponent implements OnInit {
   removeIngredient(ingredient: string): void {
     if (ingredient) {
       const index = this.ingredientslist.indexOf(ingredient);
-      console.log(index);
       if (index != -1) {
         this.ingredientslist.splice(index, 1);
       }
@@ -67,16 +64,23 @@ export class RecipeFormComponent implements OnInit {
     console.log("voeg recept toe");
   }
 
+  onfocus(event){
+    console.log(event.target);
+  }
+
   onSubmit(recipeForm: NgForm) {
-    this.value = recipeForm.value;
-    this.recipe.Id = uuid.v4();
-    this.recipe.Title = this.value.Title;
-    this.recipe.Picture = this.cardImageBase64;
-    this.recipe.Description = this.value.Description;
-    this.recipe.Ingredients = this.ingredientslist;
-    this.recipe.Persons = this.value.Persons;
-    this.recipe.Vegan = this.value.Vegan;
-    this.recipe.PrepTime = this.selectedPrepTime;
+      this.value = recipeForm.value;
+      this.recipe = new Recipe(
+        uuid.v4(), 
+        this.value.Title, 
+        this.cardImageBase64, 
+        this.ingredientslist, 
+        this.value.Description, 
+        this.value.Vegan, 
+        this.value.Persons, 
+        this.selectedPrepTime, 
+        "Freek"
+      ,);
     console.log(this.recipe);
   }
 }

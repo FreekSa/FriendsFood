@@ -13,7 +13,7 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <form #recipeForm="ngForm" (ngSubmit)="onSubmit(recipeForm)">
+        <form #recipeForm="ngForm" (submit)="onSubmit(recipeForm)" (keydown.enter)="$event.preventDefault()">
             <div style="margin: 2em">
                 <div class="col-lg">
                     <div class="row">
@@ -26,17 +26,19 @@
                         <div class="col">
                             <mat-form-field>
                                 <mat-label>Ingrediënten</mat-label>
-                                <input matInput [(ngModel)]="ingredient" name="addIngredient" (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" />
+                                <input matInput [(ngModel)]="ingredient" (focus)="onfocus($event)" name="addIngredient" (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" />
                             </mat-form-field>
                             <button mat-raised-button color="primary" type="button"
-                                style="margin-left: 0.5em; margin-bottom: 1em;" (mousedown)="addIngredient(ingredient)">Voeg
+                                style="margin-left: 0.5em; margin-bottom: 1em;"
+                                (mousedown)="addIngredient(ingredient)">Voeg
                                 ingredient toe</button>
                         </div>
                     </div>
                     <div class="row">
                         <mat-form-field *ngIf="ingredientslist.length != 0">
                             <mat-chip-list #ingredients ngModel name="ingredients">
-                                <mat-chip *ngFor="let ingredient of ingredientslist" (removed)="removeIngredient(ingredient)">
+                                <mat-chip *ngFor="let ingredient of ingredientslist"
+                                    (removed)="removeIngredient(ingredient)">
                                     {{ingredient}}
                                     <mat-icon matChipRemove>cancel</mat-icon>
                                 </mat-chip>
@@ -46,16 +48,19 @@
                     <div class="row">
                         <mat-form-field appearance="fill" style="width: 100%;">
                             <mat-label>Beschrijving</mat-label>
-                            <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description ngModel required></textarea>
+                            <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description
+                                ngModel required (keydown.enter)="$event.stopPropagation()"></textarea>
                         </mat-form-field>
                     </div>
                     <div class="col-md">
                         <mat-form-field>
                             <mat-label>Aantal personen</mat-label>
-                            <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons ngModel placeholder="Aantal personen" />
+                            <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons ngModel
+                                placeholder="Aantal personen" />
                             <mat-error *ngIf="persons <= 0">Geef een geldig nummer in</mat-error>
                         </mat-form-field>
-                        <mat-checkbox color="primary" #vegan name="Vegan" ngModel style="margin-left: 1em;">Vegan</mat-checkbox>
+                        <mat-checkbox color="primary" #vegan name="Vegan" ngModel style="margin-left: 1em;">Vegan
+                        </mat-checkbox>
                     </div>
                     <div class="row" style="height: auto;">
                         <div class="col-lg">
@@ -75,30 +80,41 @@
                             </mat-form-field>
                             <div>
                                 <ul style="padding-left: 1em;">
-                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'short' ? 'bold' : 'normal'}">Kort =
+                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'short' ? 'bold' : 'normal'}">
+                                        Kort =
                                         minder dan 15 min</li>
-                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'medium' ? 'bold' : 'normal'}">Gemiddeld
+                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'medium' ? 'bold' : 'normal'}">
+                                        Gemiddeld
                                         = 15 - 30 minuten</li>
-                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'long' ? 'bold' : 'normal'}">Lang =
+                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'long' ? 'bold' : 'normal'}">Lang
+                                        =
                                         langer dan een half uur</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-lg">
                             <div class="row">
-                                <input #imageInput
-                                type="file"
-                                accept="image/*"
-                                (change)="CreateBase64String($event)">                        
+                                <mat-form-field class="columns">
+                                    <mat-label>Voeg een foto toe</mat-label>
+                                    <ng-template #newFile>
+                                        <mat-label>Kies foto</mat-label>
+                                    </ng-template>
+                                    <input matInput disabled>
+                                    <button mat-icon-button matSuffix (click)="fileInput.click()" type="button">
+                                        <mat-icon>attach_file</mat-icon>
+                                    </button>
+                                    <input hidden (change)="CreateBase64String($event)" #fileInput type="file"
+                                        id="file">
+                                </mat-form-field>
                             </div>
-                            <div class="row">
+                            <div class="row" style="margin-bottom: 1em;">
                                 <img [src]="cardImageBase64">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg">
-                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit" (mousedown)="addRecipe()">Voeg recept toe</button>
+                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">Voeg recept toe</button>
                         </div>
                     </div>
                 </div>
