@@ -16,14 +16,33 @@ export class RecipeFormComponent implements OnInit {
   amountOfTime = "";
   submitted = false;
   selectedPrepTime = "";
-
+  selectedImage: any;
   recipe = new Recipe(null, null, null, this.ingredientslist, null, false, null, null, null);
   recipeForm: NgForm;
   value: Recipe;
+  isImageSaved: boolean = false;
+  cardImageBase64: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  CreateBase64String(fileInput: any) {
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = rs => {
+          const imgBase64Path = e.target.result;
+          this.cardImageBase64 = imgBase64Path;         
+          this.isImageSaved = true;
+          console.log(imgBase64Path);
+        };
+      };
+      reader.readAsDataURL(fileInput.target.files[0]);
+    }
   }
 
   addIngredient(ingredient: string): void {
@@ -52,7 +71,7 @@ export class RecipeFormComponent implements OnInit {
     this.value = recipeForm.value;
     this.recipe.Id = uuid.v4();
     this.recipe.Title = this.value.Title;
-    this.recipe.Picture = new ImageFruit().imageFruit;
+    this.recipe.Picture = this.cardImageBase64;
     this.recipe.Description = this.value.Description;
     this.recipe.Ingredients = this.ingredientslist;
     this.recipe.Persons = this.value.Persons;

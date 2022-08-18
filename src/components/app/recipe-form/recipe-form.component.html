@@ -29,7 +29,7 @@
                                 <input matInput [(ngModel)]="ingredient" name="addIngredient" (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" />
                             </mat-form-field>
                             <button mat-raised-button color="primary" type="button"
-                                style="margin-left: 0.5em; margin-bottom: 1em;" (click)="addIngredient(ingredient)">Voeg
+                                style="margin-left: 0.5em; margin-bottom: 1em;" (mousedown)="addIngredient(ingredient)">Voeg
                                 ingredient toe</button>
                         </div>
                     </div>
@@ -84,10 +84,21 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="col-lg">
+                            <div class="row">
+                                <input #imageInput
+                                type="file"
+                                accept="image/*"
+                                (change)="CreateBase64String($event)">                        
+                            </div>
+                            <div class="row">
+                                <img [src]="cardImageBase64">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg">
-                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit" (click)="addRecipe()">Voeg recept toe</button>
+                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit" (mousedown)="addRecipe()">Voeg recept toe</button>
                         </div>
                     </div>
                 </div>
