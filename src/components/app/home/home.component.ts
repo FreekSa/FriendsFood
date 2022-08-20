@@ -12,11 +12,10 @@ import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 
 export class HomeComponent implements OnInit {
   // test to display 10 cards
-  cards: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  cards: Array<number> = [];
   // test recipe
-  recipe: Recipe = new Recipe("121", "fruitsalade", "f", ["peer", "banaan", "appel", "kiwi"], "Cut all the ingredïents \n put them all together in a bowl", true, 1, "kort", "Freek");
   // array of mockdata
-  recipes: Array<Recipe> = [this.recipe];
+  recipes: Array<Recipe> = [];
   // base64 encoded image
   newRecipe: Recipe;
   
@@ -24,16 +23,17 @@ export class HomeComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
   
   ngOnInit(): void {
-    this.recipe.Picture = new ImageFruit().imageFruit;
   }
 
   openRecipeForm(): void{
     const dialogRef = this.dialog.open(RecipeFormComponent, {width: '100%'}
       );
-      dialogRef.afterClosed().subscribe(res => {console.log("dialog closed"), console.log(res);
-      this.newRecipe = res;
-      this.recipes.push(this.newRecipe)})
-  }
-  
-
+      dialogRef.afterClosed().subscribe(res => {
+        console.log("dialog closed"); 
+        console.log(res);
+        if(res){
+          this.newRecipe = res;
+          this.recipes.push(this.newRecipe)
+        }}
+  )}
 }
