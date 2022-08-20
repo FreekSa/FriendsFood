@@ -1,132 +1,119 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>Voeg recept toe</span>
-    <span class="spacer"></span>
-</mat-toolbar>
-<mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" style="width: 150px;">
-        <mat-nav-list>
-            <a mat-list-item href="/home">Recepten</a>
-            <a mat-list-item href="/recipeform">Voeg recept toe</a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <form #recipeForm="ngForm" (submit)="onSubmit(recipeForm)" (keydown.enter)="$event.preventDefault()">
-            <div style="margin: 2em">
+<mat-dialog-content class="justify-content-center">
+    <mat-toolbar color="secondary">
+        <span>Voeg recept toe</span>
+    </mat-toolbar>
+    <form #recipeForm="ngForm" (submit)="onSubmit(recipeForm)" (keydown.enter)="$event.preventDefault()">
+        <div style="margin: 2em">
+            <div class="col-lg">
+                <div class="row">
+                    <div class="col-md">
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Titel</mat-label>
+                            <input matInput placeholder="Titel" ngModel name="Title" #title="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg">
+                        <mat-form-field>
+                            <mat-label>Auteur</mat-label>
+                            <input matInput placeholder="Auteur" ngModel name="Autor" #autor="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field>
+                        <mat-label>Ingrediënten</mat-label>
+                        <input matInput [(ngModel)]="ingredient" name="addIngredient"
+                            (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" />
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" type="button"
+                        style="margin-left: 0.5em; margin-bottom: 1em;" (mousedown)="addIngredient(ingredient)">Voeg
+                        ingrediënt toe</button>
+                </div>
+            </div>
+            <div class="row">
+                <mat-form-field *ngIf="ingredientslist.length != 0">
+                    <mat-chip-list #ingredients ngModel name="ingredients">
+                        <mat-chip *ngFor="let ingredient of ingredientslist" (removed)="removeIngredient(ingredient)">
+                            {{ingredient}}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Beschrijving</mat-label>
+                    <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description ngModel
+                        required (keydown.enter)="$event.stopPropagation()"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="col-md">
+                <mat-form-field>
+                    <mat-label>Aantal personen</mat-label>
+                    <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons ngModel
+                        placeholder="Aantal personen" />
+                    <mat-error *ngIf="persons <= 0">Geef een geldig nummer in</mat-error>
+                </mat-form-field>
+                <mat-checkbox color="primary" #vegan name="Vegan" ngModel style="margin-left: 1em;">Vegan
+                </mat-checkbox>
+            </div>
+            <div class="row" style="height: auto;">
+                <div class="col-lg">
+                    <mat-form-field>
+                        <mat-label>Duurtijd</mat-label>
+                        <mat-select #prepTime name="PrepTime" [(value)]="selectedPrepTime">
+                            <mat-option value="short">
+                                Kort
+                            </mat-option>
+                            <mat-option value="medium">
+                                Gemiddeld
+                            </mat-option>
+                            <mat-option value="long">
+                                Lang
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
+                        <ul style="padding-left: 1em;">
+                            <li [ngStyle]="{'font-weight': selectedPrepTime == 'short' ? 'bold' : 'normal'}">
+                                Kort =
+                                minder dan 15 min</li>
+                            <li [ngStyle]="{'font-weight': selectedPrepTime == 'medium' ? 'bold' : 'normal'}">
+                                Gemiddeld
+                                = 15 - 30 minuten</li>
+                            <li [ngStyle]="{'font-weight': selectedPrepTime == 'long' ? 'bold' : 'normal'}">Lang
+                                =
+                                langer dan een half uur</li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">Voeg
+                                recept toe</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg">
                     <div class="row">
-                        <div class="col-md">
-                            <mat-form-field style="width: 100%;">
-                                <mat-label>Titel</mat-label>
-                                <input matInput placeholder="Titel" ngModel name="Title" #title="ngModel" required />
-                            </mat-form-field>
-                        </div>
-                        <div class="col-lg">
-                            <mat-form-field>
-                                <mat-label>Auteur</mat-label>
-                                <input matInput placeholder="Auteur" ngModel name="Auteur" #auteur="ngModel" required />
-                            </mat-form-field>
-                        </div>
-                    </div>
-                </div>
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field>
-                                <mat-label>Ingrediënten</mat-label>
-                                <input matInput [(ngModel)]="ingredient" name="addIngredient" (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" />
-                            </mat-form-field>
-                            <button mat-raised-button color="primary" type="button"
-                                style="margin-left: 0.5em; margin-bottom: 1em;"
-                                (mousedown)="addIngredient(ingredient)">Voeg
-                                ingrediënt toe</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <mat-form-field *ngIf="ingredientslist.length != 0">
-                            <mat-chip-list #ingredients ngModel name="ingredients">
-                                <mat-chip *ngFor="let ingredient of ingredientslist"
-                                    (removed)="removeIngredient(ingredient)">
-                                    {{ingredient}}
-                                    <mat-icon matChipRemove>cancel</mat-icon>
-                                </mat-chip>
-                            </mat-chip-list>
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field appearance="fill" style="width: 100%;">
-                            <mat-label>Beschrijving</mat-label>
-                            <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description
-                                ngModel required (keydown.enter)="$event.stopPropagation()"></textarea>
-                        </mat-form-field>
-                    </div>
-                    <div class="col-md">
                         <mat-form-field>
-                            <mat-label>Aantal personen</mat-label>
-                            <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons ngModel
-                                placeholder="Aantal personen" />
-                            <mat-error *ngIf="persons <= 0">Geef een geldig nummer in</mat-error>
+                            <mat-label>Voeg een foto toe via de paperclip</mat-label>
+                            <ng-template #newFile>
+                                <mat-label>Kies foto</mat-label>
+                            </ng-template>
+                            <input matInput disabled>
+                            <button mat-icon-button matSuffix (click)="fileInput.click()" type="button">
+                                <mat-icon>attach_file</mat-icon>
+                            </button>
+                            <input hidden (change)="CreateBase64String($event)" #fileInput type="file" id="file">
                         </mat-form-field>
-                        <mat-checkbox color="primary" #vegan name="Vegan" ngModel style="margin-left: 1em;">Vegan
-                        </mat-checkbox>
                     </div>
-                    <div class="row" style="height: auto;">
-                        <div class="col-lg">
-                            <mat-form-field>
-                                <mat-label>Duurtijd</mat-label>
-                                <mat-select #prepTime name="PrepTime" [(value)]="selectedPrepTime">
-                                    <mat-option value="short">
-                                        Kort
-                                    </mat-option>
-                                    <mat-option value="medium">
-                                        Gemiddeld
-                                    </mat-option>
-                                    <mat-option value="long">
-                                        Lang
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field>
-                            <div>
-                                <ul style="padding-left: 1em;">
-                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'short' ? 'bold' : 'normal'}">
-                                        Kort =
-                                        minder dan 15 min</li>
-                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'medium' ? 'bold' : 'normal'}">
-                                        Gemiddeld
-                                        = 15 - 30 minuten</li>
-                                    <li [ngStyle]="{'font-weight': selectedPrepTime == 'long' ? 'bold' : 'normal'}">Lang
-                                        =
-                                        langer dan een half uur</li>
-                                </ul>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg">
-                                    <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">Voeg recept toe</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg">
-                            <div class="row">
-                                <mat-form-field>
-                                    <mat-label>Voeg een foto toe via de paperclip</mat-label>
-                                    <ng-template #newFile>
-                                        <mat-label>Kies foto</mat-label>
-                                    </ng-template>
-                                    <input matInput disabled>
-                                    <button mat-icon-button matSuffix (click)="fileInput.click()" type="button">
-                                        <mat-icon>attach_file</mat-icon>
-                                    </button>
-                                    <input hidden (change)="CreateBase64String($event)" #fileInput type="file"
-                                        id="file">
-                                </mat-form-field>
-                            </div>
-                            <div class="row" style="margin-bottom: 1em;">
-                                <img [src]="cardImageBase64">
-                            </div>
-                        </div>
+                    <div class="row" style="margin-bottom: 1em;">
+                        <img [src]="cardImageBase64">
                     </div>
                 </div>
-        </form>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>

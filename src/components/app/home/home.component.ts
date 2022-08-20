@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from '../models/recipe';
-import {ImageFruit} from '../../../assets/imagesEncoded';
+import { ImageFruit } from '../../../assets/imagesEncoded';
+import { MatDialog } from '@angular/material/dialog';
+import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +18,22 @@ export class HomeComponent implements OnInit {
   // array of mockdata
   recipes: Array<Recipe> = [this.recipe];
   // base64 encoded image
-  image: string = new ImageFruit().imageFruit;
-
+  newRecipe: Recipe;
   
-  constructor() { }
-
+  
+  constructor(public dialog: MatDialog) { }
+  
   ngOnInit(): void {
+    this.recipe.Picture = new ImageFruit().imageFruit;
   }
+
+  openRecipeForm(): void{
+    const dialogRef = this.dialog.open(RecipeFormComponent, {width: '100%'}
+      );
+      dialogRef.afterClosed().subscribe(res => {console.log("dialog closed"), console.log(res);
+      this.newRecipe = res;
+      this.recipes.push(this.newRecipe)})
+  }
+  
 
 }

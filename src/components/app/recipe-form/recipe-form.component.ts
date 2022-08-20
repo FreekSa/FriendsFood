@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Recipe } from '../models/recipe';
 import * as uuid from "uuid";
 import { ImageFruit } from '../../../assets/imagesEncoded';
+import { MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -22,8 +23,7 @@ export class RecipeFormComponent implements OnInit {
   value: Recipe;
   cardImageBase64: string = '';
 
-  constructor() { }
-
+  constructor(public dialogRef: MatDialogRef<RecipeFormComponent>) { }
   ngOnInit(): void {
   }
 
@@ -78,6 +78,9 @@ export class RecipeFormComponent implements OnInit {
         this.value.Autor
       ,);
     console.log(this.recipe);
+    this.dialogRef.close(this.recipe);
   }
+
+
 }
 
