@@ -20,7 +20,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatChipsModule} from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component'; 
 
 
 const routing = [
@@ -33,7 +34,8 @@ const routing = [
   declarations: [
     AppComponent,
     HomeComponent,
-    RecipeFormComponent
+    RecipeFormComponent,
+    RecipeDetailComponent
   ],
   imports: [
     BrowserModule,

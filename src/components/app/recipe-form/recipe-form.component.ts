@@ -1,9 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Recipe } from '../models/recipe';
 import * as uuid from "uuid";
-import { ImageFruit } from '../../../assets/imagesEncoded';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({
@@ -18,15 +17,22 @@ export class RecipeFormComponent implements OnInit {
   submitted = false;
   selectedPrepTime = "";
   selectedImage: any;
-  recipe: Recipe;
+  recipe = new Recipe(null, null, null, null, null, null, null, null, null);
   recipeForm: NgForm;
   value: Recipe;
   cardImageBase64: string = '';
 
-  constructor(public dialogRef: MatDialogRef<RecipeFormComponent>) { }
+  constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data ) { }
   ngOnInit(): void {
+    console.log("data");
+    console.log(this.data.recipe);
+    if(this.data.recipe){
+      this.recipe = this.data.recipe;
+      this.selectedPrepTime = this.data.recipe.PrepTime;
+    } else {
+      this.recipe = new Recipe(null, null, null, [], null, null, null, null, null);
+    }
   }
-
 
 
   CreateBase64String(fileInput: any) {
@@ -37,7 +43,7 @@ export class RecipeFormComponent implements OnInit {
         image.src = e.target.result;
         image.onload = rs => {
           const imgBase64Path = e.target.result;
-          this.cardImageBase64 = imgBase64Path;         
+          this.recipe.Picture = imgBase64Path;         
         };
       };
       reader.readAsDataURL(fileInput.target.files[0]);
@@ -46,16 +52,16 @@ export class RecipeFormComponent implements OnInit {
 
   addIngredient(ingredient: string): void {
     if (ingredient) {
-      this.ingredientslist.push(ingredient);
+      this.recipe.Ingredients.push(ingredient);
       this.ingredient = "";
     }
   }
 
   removeIngredient(ingredient: string): void {
     if (ingredient) {
-      const index = this.ingredientslist.indexOf(ingredient);
+      const index = this.recipe.Ingredients.indexOf(ingredient);
       if (index != -1) {
-        this.ingredientslist.splice(index, 1);
+        this.recipe.Ingredients.splice(index, 1);
       }
     }
   }
@@ -63,24 +69,40 @@ export class RecipeFormComponent implements OnInit {
   addRecipe() {
     console.log("voeg recept toe");
   }
-
+  
   onSubmit(recipeForm: NgForm) {
-      this.value = recipeForm.value;
+    
+    this.value = recipeForm.value;
+    console.log(this.value.Ingredients);
+    if(this.recipe.Id){
+      console.log("recept heeft een ID");
       this.recipe = new Recipe(
-        uuid.v4(), 
-        this.value.Title, 
-        this.cardImageBase64, 
-        this.ingredientslist, 
-        this.value.Description, 
-        this.value.Vegan, 
-        this.value.Persons, 
-        this.selectedPrepTime, 
-        this.value.Autor
-      ,);
-    console.log(this.recipe);
-    this.dialogRef.close(this.recipe);
+          this.data.recipe.Id, 
+          this.value.Title, 
+          this.recipe.Picture, 
+          this.recipe.Ingredients, 
+          this.value.Description, 
+          this.value.Vegan, 
+          this.value.Persons, 
+          this.selectedPrepTime, 
+          this.value.Autor
+          ,);
+    } else {
+      console.log("recept heeft geen ID");
+      this.recipe = new Recipe(
+          uuid.v4(), 
+          this.value.Title, 
+          this.recipe.Picture, 
+          this.recipe.Ingredients, 
+          this.value.Description, 
+          this.value.Vegan, 
+          this.value.Persons, 
+          this.selectedPrepTime, 
+          this.value.Autor
+          ,);
+    }
+        console.log(this.value.Picture);
+        this.dialogRef.close(this.recipe);
   }
-
-
 }
 

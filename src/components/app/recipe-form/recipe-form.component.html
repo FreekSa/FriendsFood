@@ -9,13 +9,13 @@
                     <div class="col-md">
                         <mat-form-field style="width: 100%;">
                             <mat-label>Titel</mat-label>
-                            <input matInput placeholder="Titel" ngModel name="Title" #title="ngModel" required />
+                            <input matInput placeholder="Titel" [ngModel]="recipe?.Title" name="Title" #title="ngModel" required />
                         </mat-form-field>
                     </div>
                     <div class="col-lg">
                         <mat-form-field>
                             <mat-label>Auteur</mat-label>
-                            <input matInput placeholder="Auteur" ngModel name="Autor" #autor="ngModel" required />
+                            <input matInput placeholder="Auteur" [ngModel]="recipe?.Autor" name="Autor" #autor="ngModel" required />
                         </mat-form-field>
                     </div>
                 </div>
@@ -33,9 +33,9 @@
                 </div>
             </div>
             <div class="row">
-                <mat-form-field *ngIf="ingredientslist.length != 0">
-                    <mat-chip-list #ingredients ngModel name="ingredients">
-                        <mat-chip *ngFor="let ingredient of ingredientslist" (removed)="removeIngredient(ingredient)">
+                <mat-form-field *ngIf="recipe.Ingredients.length != 0">
+                    <mat-chip-list #ingredients [ngModel]="recipe?.Ingredients" name="ingredients">
+                        <mat-chip *ngFor="let ingredient of recipe.Ingredients" (removed)="removeIngredient(ingredient)">
                             {{ingredient}}
                             <mat-icon matChipRemove>cancel</mat-icon>
                         </mat-chip>
@@ -45,18 +45,18 @@
             <div class="row">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Beschrijving</mat-label>
-                    <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description ngModel
+                    <textarea matInput placeholder="Beschrijving" rows="20" name="Description" #description [ngModel]="recipe.Description"
                         required (keydown.enter)="$event.stopPropagation()"></textarea>
                 </mat-form-field>
             </div>
             <div class="col-md">
                 <mat-form-field>
                     <mat-label>Aantal personen</mat-label>
-                    <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons ngModel
+                    <input matInput type="number" pattern="\d*" min="1" name="Persons" required #persons [ngModel]="recipe?.Persons"
                         placeholder="Aantal personen" />
                     <mat-error *ngIf="persons <= 0">Geef een geldig nummer in</mat-error>
                 </mat-form-field>
-                <mat-checkbox color="primary" #vegan name="Vegan" ngModel style="margin-left: 1em;">Vegan
+                <mat-checkbox color="primary" #vegan name="Vegan" [ngModel]="recipe?.Vegan" style="margin-left: 1em;">Vegan
                 </mat-checkbox>
             </div>
             <div class="row" style="height: auto;">
@@ -110,7 +110,7 @@
                         </mat-form-field>
                     </div>
                     <div class="row" style="margin-bottom: 1em;">
-                        <img [src]="cardImageBase64">
+                        <img [src]="recipe.Picture">
                     </div>
                 </div>
             </div>
