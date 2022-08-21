@@ -1,6 +1,6 @@
 <mat-dialog-content class="justify-content-center">
     <mat-toolbar color="secondary">
-        <span>Voeg recept toe</span>
+        <p>{{recipe.Id ? "Wijzig recept" : "Voeg recept toe"}}</p>
     </mat-toolbar>
     <form #recipeForm="ngForm" (submit)="onSubmit(recipeForm)" (keydown.enter)="$event.preventDefault()">
         <div style="margin: 2em">

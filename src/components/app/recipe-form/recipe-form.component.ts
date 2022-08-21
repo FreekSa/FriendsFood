@@ -24,8 +24,6 @@ export class RecipeFormComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data ) { }
   ngOnInit(): void {
-    console.log("data");
-    console.log(this.data.recipe);
     if(this.data.recipe){
       this.recipe = this.data.recipe;
       this.selectedPrepTime = this.data.recipe.PrepTime;
@@ -73,9 +71,7 @@ export class RecipeFormComponent implements OnInit {
   onSubmit(recipeForm: NgForm) {
     
     this.value = recipeForm.value;
-    console.log(this.value.Ingredients);
     if(this.recipe.Id){
-      console.log("recept heeft een ID");
       this.recipe = new Recipe(
           this.data.recipe.Id, 
           this.value.Title, 
@@ -88,7 +84,6 @@ export class RecipeFormComponent implements OnInit {
           this.value.Autor
           ,);
     } else {
-      console.log("recept heeft geen ID");
       this.recipe = new Recipe(
           uuid.v4(), 
           this.value.Title, 
@@ -101,7 +96,6 @@ export class RecipeFormComponent implements OnInit {
           this.value.Autor
           ,);
     }
-        console.log(this.value.Picture);
         this.dialogRef.close(this.recipe);
   }
 }
