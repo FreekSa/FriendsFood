@@ -28,12 +28,10 @@ export class HomeComponent implements OnInit {
   openRecipeForm(): void{
     const dialogRef = this.dialog.open(RecipeFormComponent, {width: '100%'}
       );
-      dialogRef.afterClosed().subscribe(res => {
-        console.log("dialog closed"); 
-        console.log(res);
-        if(res){
+      dialogRef.afterClosed().subscribe((res: Recipe) => {
+        if(res.Id){
           this.newRecipe = res;
-          this.recipes.push(this.newRecipe)
+          this.recipes.push(this.newRecipe);
         }}
   )}
 }
