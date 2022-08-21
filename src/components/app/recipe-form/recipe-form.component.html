@@ -90,8 +90,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg" mat-dialog-actions>
-                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">Voeg
-                                recept toe</button>
+                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">{{recipe.Id ? "Wijzig recept" : "Voeg recept toe"}}</button>
                         </div>
                     </div>
                 </div>
