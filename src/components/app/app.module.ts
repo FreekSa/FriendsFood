@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component'; 
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routing = [
@@ -55,7 +56,8 @@ const routing = [
     MatChipsModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
