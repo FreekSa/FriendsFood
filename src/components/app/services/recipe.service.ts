@@ -13,17 +13,17 @@ export class RecipeService {
   constructor(public http: HttpClient) { }
 
   getRecipes(): any{
-    return this.http.get<Recipe>('http://' + this.host + this.port + '/recipes');
+    return this.http.get<Recipe>('http://' + this.host + '/recipes');
   }
 
   addRecipe(recipe: Recipe): Observable<Recipe>{
     delete recipe.Id;
     console.log(recipe);
-   return this.http.post<Recipe>('http://'+ this.host + this.port + '/recipes', recipe);
+   return this.http.post<Recipe>('http://'+ this.host + '/recipes', recipe);
   } 
 
   editRecipe(recipe: Recipe): Observable<Recipe>{
-    return this.http.put<Recipe>('http://' + this.host + this.port + '/recipes/' + recipe.Id, recipe);
+    return this.http.put<Recipe>('http://' + this.host + '/recipes/' + recipe.Id, recipe);
   }
 
 
