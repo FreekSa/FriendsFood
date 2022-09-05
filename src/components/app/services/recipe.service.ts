@@ -15,10 +15,13 @@ export class RecipeService {
     return this.http.get<Recipe>('http://' + this.host + this.port + '/recipes');
   }
 
-  addRecipe(recipe: Recipe): Observable<any>{
+  addRecipe(recipe: Recipe): Observable<Recipe>{
     delete recipe.Id;
     console.log(recipe);
    return this.http.post<Recipe>('http://'+ this.host + this.port + '/recipes', recipe);
   } 
 
+  editRecipe(recipe: Recipe): Observable<Recipe>{
+    return this.http.put<Recipe>('http://' + this.host + this.port + '/recipes/' + recipe.Id, recipe);
+  }
 }

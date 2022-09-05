@@ -97,7 +97,11 @@ export class RecipeFormComponent implements OnInit {
         this.value.Autor
         ,);
     }
-    await this.recipeService.addRecipe(this.recipe).subscribe((res) => console.log(res));
+    if(this.recipe.Id){
+      await this.recipeService.editRecipe(this.recipe).subscribe((res) => console.log(res));
+    } else {
+      await this.recipeService.addRecipe(this.recipe).subscribe((res) => console.log(res));
+    }
     this.dialogRef.close(this.recipe);
   }
 }
