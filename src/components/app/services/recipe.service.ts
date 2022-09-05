@@ -7,7 +7,8 @@ import { Recipe } from '../models/recipe';
   providedIn: 'root'
 })
 export class RecipeService {
-  host = 'localhost:';
+ // host = 'localhost:';
+  host = "https://friends-food-api.herokuapp.com:";
   port = 3000;
   constructor(public http: HttpClient) { }
 
@@ -24,4 +25,7 @@ export class RecipeService {
   editRecipe(recipe: Recipe): Observable<Recipe>{
     return this.http.put<Recipe>('http://' + this.host + this.port + '/recipes/' + recipe.Id, recipe);
   }
+
+
+
 }

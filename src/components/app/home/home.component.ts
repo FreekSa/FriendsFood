@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   async getData() {
-    await this.recipeService.getRecipes().subscribe((res: Recipe[]) => {console.log(res);
+   await this.recipeService.getRecipes().subscribe((res: Recipe[]) => {console.log(res);
                                                               this.recipes = res});
   //  console.log(this.recipes);
   }
