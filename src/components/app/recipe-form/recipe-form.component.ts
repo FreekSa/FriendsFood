@@ -2,7 +2,8 @@ import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Recipe } from '../models/recipe';
 import * as uuid from "uuid";
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { RecipeService } from '../services/recipe.service';
 
 
 @Component({
@@ -22,9 +23,10 @@ export class RecipeFormComponent implements OnInit {
   value: Recipe;
   cardImageBase64: string = '';
 
-  constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data ) { }
+  constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data,
+              private recipeService: RecipeService) { }
   ngOnInit(): void {
-    if(this.data.recipe){
+    if (this.data.recipe) {
       this.recipe = this.data.recipe;
       this.selectedPrepTime = this.data.recipe.PrepTime;
     } else {
@@ -41,7 +43,7 @@ export class RecipeFormComponent implements OnInit {
         image.src = e.target.result;
         image.onload = rs => {
           const imgBase64Path = e.target.result;
-          this.recipe.Picture = imgBase64Path;         
+          this.recipe.Picture = imgBase64Path;
         };
       };
       reader.readAsDataURL(fileInput.target.files[0]);
@@ -67,36 +69,36 @@ export class RecipeFormComponent implements OnInit {
   addRecipe() {
     console.log("voeg recept toe");
   }
-  
-  onSubmit(recipeForm: NgForm) {
-    
+
+ async onSubmit(recipeForm: NgForm) {
+
     this.value = recipeForm.value;
-    if(this.recipe.Id){
+    if (this.recipe.Id) {
       this.recipe = new Recipe(
-          this.data.recipe.Id, 
-          this.value.Title, 
-          this.recipe.Picture, 
-          this.recipe.Ingredients, 
-          this.value.Description, 
-          this.value.Vegan, 
-          this.value.Persons, 
-          this.selectedPrepTime, 
-          this.value.Autor
-          ,);
+        this.data.recipe.Id,
+        this.value.Title,
+        this.recipe.Picture,
+        this.recipe.Ingredients,
+        this.value.Description,
+        this.value.Vegan,
+        this.value.Persons,
+        this.selectedPrepTime,
+        this.value.Autor
+        ,);
     } else {
-      this.recipe = new Recipe(
-          uuid.v4(), 
-          this.value.Title, 
-          this.recipe.Picture, 
-          this.recipe.Ingredients, 
-          this.value.Description, 
-          this.value.Vegan, 
-          this.value.Persons, 
-          this.selectedPrepTime, 
-          this.value.Autor
-          ,);
+      this.recipe = new Recipe(null,
+        this.value.Title,
+        this.recipe.Picture ?? "test",
+        this.recipe.Ingredients,
+        this.value.Description,
+        this.value.Vegan ?? false,
+        this.value.Persons,
+        this.selectedPrepTime,
+        this.value.Autor
+        ,);
     }
-        this.dialogRef.close(this.recipe);
+    await this.recipeService.addRecipe(this.recipe).subscribe((res) => console.log(res));
+    this.dialogRef.close(this.recipe);
   }
 }
 
