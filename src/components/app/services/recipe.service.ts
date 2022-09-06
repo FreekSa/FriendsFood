@@ -16,6 +16,10 @@ export class RecipeService {
     return this.http.get<Recipe>(this.host + '/recipes');
   }
 
+  getRecipe(id: String): any{
+    return this.http.get<Recipe>(this.host + '/recipes/' + id);
+  }
+
   addRecipe(recipe: Recipe): Observable<Recipe>{
     delete recipe.Id;
     console.log(recipe);
@@ -29,7 +33,7 @@ export class RecipeService {
   deleteRecipe(recipeId: string): Observable<Recipe>{
     return this.http.delete<Recipe>(this.host + '/recipes/' + recipeId);
   }
-
+  
 
 
 }

@@ -30,6 +30,7 @@ const routing = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'recipeform', component: RecipeFormComponent },
+  {path: 'home/:Id', component: RecipeDetailComponent}
 ];
 
 @NgModule({
