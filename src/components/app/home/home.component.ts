@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 import * as uuid from "uuid";
 import { RecipeService } from '../services/recipe.service';
+import { DeleteRecipeComponent } from '../delete-recipe/delete-recipe.component';
 
 @Component({
   selector: 'app-home',
@@ -51,4 +52,13 @@ export class HomeComponent implements OnInit {
         }
       }
   )}
+
+  deleteRecipeDialog(recipe: Recipe): void{
+    console.log(recipe);
+    const dialogRef = this.dialog.open(DeleteRecipeComponent, {data: recipe});
+    dialogRef.afterClosed().subscribe((res: Recipe) =>   {
+      const index = this.recipes.findIndex(x => x.Id === res.Id);
+      this.recipes.splice(index, 1);
+    },)
+  }
 }

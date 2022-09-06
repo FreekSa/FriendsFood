@@ -26,11 +26,16 @@
             <img mat-card-image class="image" [src]="recipe.Picture" alt="picture">
           </div>
           <mat-card-content>
-            <p align="right" style="margin-right: 1em;">{{recipe.Autor}}</p>
+            <div class="row">
+              <p align="right" style="margin-right: 1em;">{{recipe.Autor}}</p>
+            </div>
           </mat-card-content>
           <mat-card-actions>
             <button mat-button (click)="addOrEditRecipe(recipe)">Wijzig recept</button>
             <button mat-button>Toon recept</button>
+            <button mat-icon-button (click)="deleteRecipeDialog(recipe)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>

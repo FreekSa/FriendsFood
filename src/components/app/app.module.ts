@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component'; 
 import { HttpClientModule } from '@angular/common/http';
+import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
 
 
 const routing = [
@@ -36,7 +37,8 @@ const routing = [
     AppComponent,
     HomeComponent,
     RecipeFormComponent,
-    RecipeDetailComponent
+    RecipeDetailComponent,
+    DeleteRecipeComponent
   ],
   imports: [
     BrowserModule,

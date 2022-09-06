@@ -26,6 +26,10 @@ export class RecipeService {
     return this.http.put<Recipe>(this.host + '/recipes/' + recipe.Id, recipe);
   }
 
+  deleteRecipe(recipeId: string): Observable<Recipe>{
+    return this.http.delete<Recipe>(this.host + '/recipes/' + recipeId);
+  }
+
 
 
 }
