@@ -22,6 +22,7 @@ export class RecipeFormComponent implements OnInit {
   recipeForm: NgForm;
   value: Recipe;
   cardImageBase64: string = '';
+  listEmpty: boolean = true;
 
   constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data,
               private recipeService: RecipeService) { }
@@ -53,6 +54,7 @@ export class RecipeFormComponent implements OnInit {
   addIngredient(ingredient: string): void {
     if (ingredient) {
       this.recipe.Ingredients.push(ingredient);
+      this.ingredientslist.push(ingredient);
       this.ingredient = "";
     }
   }
@@ -93,16 +95,15 @@ export class RecipeFormComponent implements OnInit {
         this.value.Description,
         this.value.Vegan ?? false,
         this.value.Persons,
-        this.selectedPrepTime,
+        this.selectedPrepTime == "" ? "short" : this.selectedPrepTime,
         this.value.Autor
         ,);
     }
     if(this.recipe.Id){
-      await this.recipeService.editRecipe(this.recipe).subscribe((res) => console.log(res));
+      await this.recipeService.editRecipe(this.recipe).subscribe(() => {this.dialogRef.close(this.recipe)});
     } else {
-      await this.recipeService.addRecipe(this.recipe).subscribe((res) => console.log(res));
+      await this.recipeService.addRecipe(this.recipe).subscribe((res) => {this.recipe = res, this.dialogRef.close(res)});
     }
-    this.dialogRef.close(this.recipe);
   }
 }
 

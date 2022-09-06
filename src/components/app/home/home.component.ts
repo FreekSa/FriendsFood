@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
       );
       dialogRef.afterClosed().subscribe((res: Recipe) => {
         if(res){
-          console.log(this.recipes.findIndex(x => x.Id == res.Id));
           if(this.recipes.findIndex(x => x.Id == res.Id) == -1){
             this.newRecipe = res;
             this.recipes.push(this.newRecipe);
@@ -54,11 +53,14 @@ export class HomeComponent implements OnInit {
   )}
 
   deleteRecipeDialog(recipe: Recipe): void{
-    console.log(recipe);
     const dialogRef = this.dialog.open(DeleteRecipeComponent, {data: recipe});
     dialogRef.afterClosed().subscribe((res: Recipe) =>   {
-      const index = this.recipes.findIndex(x => x.Id === res.Id);
-      this.recipes.splice(index, 1);
+      if(res){
+        const index = this.recipes.findIndex(x => x.Id === recipe.Id);
+        this.recipes.splice(index, 1);
+      } else {
+        return;
+      }
     },)
   }
 }

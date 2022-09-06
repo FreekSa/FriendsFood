@@ -15,17 +15,13 @@ export class DeleteRecipeComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipe = this.data;
-    console.log(this.data);
   }
 
   async closeDialog(deleteRecipe? : boolean){
     if(deleteRecipe){
-      const deleted = await this.recipeService.deleteRecipe(this.recipe.Id).subscribe()
-      if(deleted){
-        this.dialogRef.close();
-      }
+      await this.recipeService.deleteRecipe(this.recipe.Id).subscribe(() => {this.dialogRef.close(deleteRecipe);});
     } else {
-      this.dialogRef.close();
+      this.dialogRef.close(deleteRecipe);
     }
   }
 

@@ -9,7 +9,7 @@
                     <div class="col-md">
                         <mat-form-field style="width: 100%;">
                             <mat-label>Titel</mat-label>
-                            <input matInput placeholder="Titel" [ngModel]="recipe?.Title" name="Title" #title="ngModel" required />
+                            <input matInput placeholder="Titel" [ngModel]="recipe?.Title" name="Title" #title="ngModel" />
                         </mat-form-field>
                     </div>
                     <div class="col-lg">
@@ -25,7 +25,8 @@
                     <mat-form-field>
                         <mat-label>Ingrediënten</mat-label>
                         <input matInput [(ngModel)]="ingredient" name="addIngredient"
-                            (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten" />
+                        (keyup.enter)="addIngredient(ingredient)" placeholder="Ingrediënten"/>
+                        <mat-hint *ngIf="recipe.Ingredients.length === 0">Voeg minstens 1 ingrediënt toe</mat-hint>
                     </mat-form-field>
                     <button mat-raised-button color="primary" type="button"
                         style="margin-left: 0.5em; margin-bottom: 1em;" (mousedown)="addIngredient(ingredient)">Voeg
@@ -90,7 +91,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg" mat-dialog-actions>
-                            <button mat-raised-button color="primary" [disabled]="!recipeForm.valid" type="submit">{{recipe.Id ? "Wijzig recept" : "Voeg recept toe"}}</button>
+                            <button mat-raised-button color="primary" [disabled]="((recipeForm.valid) && (recipe.Ingredients.length != 0)) ? false : true" type="submit">{{recipe.Id ? "Wijzig recept" : "Voeg recept toe"}}</button>
                             <button mat-button type="button" (click)="this.dialogRef.close()">Annuleer</button>
                         </div>
                     </div>
