@@ -13,12 +13,29 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div style="margin: 2em;">
-            <div *ngIf="recipe?.Id">
+            <div *ngIf="recipe?.Id" class="justify-content-center">
                 <h1>{{recipe.Title}}</h1>
                 <div>
-                    <pre>
-                        {{recipe.Description}}
-                    </pre>
+                    <mat-chip-list #ingredients [ngModel]="recipe?.Ingredients" name="ingredients">
+                        <mat-chip *ngFor="let ingredient of recipe.Ingredients">
+                            {{ingredient}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+                <div>
+                    <pre>{{recipe.Description}}</pre>
+                </div>
+                <div>
+                    <h4>Vegan: {{recipe.Vegan ? "Ja" : "Nee"}}</h4>
+                </div>
+                <div>
+                    <h4>Auteur: {{recipe.Autor}}</h4>
+                </div>
+                <div>
+                    <h4>Bereidingstijd: {{recipe.PrepTime}}</h4>
+                </div>
+                <div>
+                    <h4>Recept voor {{recipe.Persons}} {{recipe.Persons == 1 ? "persoon" : "personen"}}</h4>
                 </div>
             </div>
         </div>
