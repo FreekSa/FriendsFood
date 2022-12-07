@@ -13,29 +13,32 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div style="margin: 2em;">
-            <div *ngIf="recipe?.Id" class="justify-content-center">
-                <h1>{{recipe.Title}}</h1>
-                <div>
-                    <mat-chip-list #ingredients [ngModel]="recipe?.Ingredients" name="ingredients">
-                        <mat-chip *ngFor="let ingredient of recipe.Ingredients">
-                            {{ingredient}}
-                        </mat-chip>
-                    </mat-chip-list>
+            <div class="row">
+                <div class="col">
+                    <div *ngIf="recipe?.Id" class="justify-content-center">
+                        <h1>{{recipe.Title}}</h1>
+                        <h5>Auteur: {{recipe.Autor}}</h5>
+                        <div>
+                            <mat-chip-list #ingredients [ngModel]="recipe?.Ingredients" name="ingredients">
+                                <mat-chip *ngFor="let ingredient of recipe.Ingredients">
+                                    {{ingredient}}
+                                </mat-chip>
+                            </mat-chip-list>
+                        </div>
+                        <h4 style="margin-top: 1em;">Bereidingstijd: {{recipe.PrepTime}}</h4>
+                        <div class="row">
+                            <div class="col">
+                                <h4>Recept voor {{recipe.Persons}} {{recipe.Persons == 1 ? "persoon" : "personen"}}</h4>
+                            </div>
+                            <div class="col">
+                                <mat-checkbox color="primary" #vegan name="Vegan" [ngModel]="recipe?.Vegan" style="margin-left: 1em;">Vegan </mat-checkbox>
+                            </div>
+                        </div>
+                        <pre class="recipeDescription">{{recipe.Description}}</pre>
+                    </div>
                 </div>
-                <div>
-                    <pre>{{recipe.Description}}</pre>
-                </div>
-                <div>
-                    <h4>Vegan: {{recipe.Vegan ? "Ja" : "Nee"}}</h4>
-                </div>
-                <div>
-                    <h4>Auteur: {{recipe.Autor}}</h4>
-                </div>
-                <div>
-                    <h4>Bereidingstijd: {{recipe.PrepTime}}</h4>
-                </div>
-                <div>
-                    <h4>Recept voor {{recipe.Persons}} {{recipe.Persons == 1 ? "persoon" : "personen"}}</h4>
+                <div class="col-md">
+                        <img mat-card-image class="image" [src]="recipe.Picture" alt="picture">
                 </div>
             </div>
         </div>

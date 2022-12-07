@@ -7,9 +7,8 @@ import { Recipe } from '../models/recipe';
   providedIn: 'root'
 })
 export class RecipeService {
- // host = 'localhost:';
-  host = "https://friends-food-api.herokuapp.com:";
-  port = 3000;
+ port = 3000;
+ host = "http://192.168.1.19:" + this.port;
   constructor(public http: HttpClient) { }
 
   getRecipes(): any{

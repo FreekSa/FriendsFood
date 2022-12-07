@@ -1,0 +1,9 @@
+.recipeDescription{
+    margin-top: 1em;
+    font-size: medium;
+}
+
+.image {
+    max-height: 400px;
+    margin: 0,1em,0,1em;
+  }

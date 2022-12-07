@@ -19,6 +19,7 @@ export class RecipeFormComponent implements OnInit {
   selectedPrepTime = "";
   selectedImage: any;
   recipe = new Recipe(null, null, null, null, null, null, null, null, null);
+  copy = new Recipe(null, null, null, null, null, null, null, null, null);
   recipeForm: NgForm;
   value: Recipe;
   cardImageBase64: string = '';
@@ -26,9 +27,11 @@ export class RecipeFormComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data,
               private recipeService: RecipeService) { }
+              
   ngOnInit(): void {
     if (this.data.recipe) {
       this.recipe = this.data.recipe;
+      this.copy = this.recipe;
       this.selectedPrepTime = this.data.recipe.PrepTime;
     } else {
       this.recipe = new Recipe(null, null, null, [], null, null, null, null, null);
@@ -54,7 +57,6 @@ export class RecipeFormComponent implements OnInit {
   addIngredient(ingredient: string): void {
     if (ingredient) {
       this.recipe.Ingredients.push(ingredient);
-      this.ingredientslist.push(ingredient);
       this.ingredient = "";
     }
   }
@@ -68,12 +70,8 @@ export class RecipeFormComponent implements OnInit {
     }
   }
 
-  addRecipe() {
-    console.log("voeg recept toe");
-  }
-
  async onSubmit(recipeForm: NgForm) {
-
+    console.log("onsubmit triggered");
     this.value = recipeForm.value;
     if (this.recipe.Id) {
       this.recipe = new Recipe(
@@ -90,7 +88,7 @@ export class RecipeFormComponent implements OnInit {
     } else {
       this.recipe = new Recipe(null,
         this.value.Title,
-        this.recipe.Picture ?? "test",
+        this.recipe.Picture ?? "Picture",
         this.recipe.Ingredients,
         this.value.Description,
         this.value.Vegan ?? false,
