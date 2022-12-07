@@ -31,7 +31,7 @@
                                 <h4>Recept voor {{recipe.Persons}} {{recipe.Persons == 1 ? "persoon" : "personen"}}</h4>
                             </div>
                             <div class="col">
-                                <mat-checkbox color="primary" #vegan name="Vegan" [ngModel]="recipe?.Vegan" style="margin-left: 1em;">Vegan </mat-checkbox>
+                                <mat-checkbox color="primary" [disabled]="true" [class.mat-checkbox-disabled]="false" #vegan name="Vegan" [ngModel]="recipe?.Vegan" style="margin-left: 1em;">Vegan </mat-checkbox>
                             </div>
                         </div>
                         <pre class="recipeDescription">{{recipe.Description}}</pre>
