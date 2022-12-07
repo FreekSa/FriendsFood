@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recipe } from '../models/recipe';
+import { Recipe } from '../../../models/recipe';
 import { ImageCake } from '../../../assets/imagesEncoded';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 import * as uuid from "uuid";
-import { RecipeService } from '../services/recipe.service';
+import { RecipeService } from '../../../services/recipe.service';
 import { DeleteRecipeComponent } from '../delete-recipe/delete-recipe.component';
 
 @Component({

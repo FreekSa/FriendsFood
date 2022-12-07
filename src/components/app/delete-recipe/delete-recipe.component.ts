@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Recipe } from '../models/recipe';
-import { RecipeService } from '../services/recipe.service';
+import { Recipe } from '../../../models/recipe';
+import { RecipeService } from '../../../services/recipe.service';
 
 @Component({
   selector: 'app-delete-recipe',

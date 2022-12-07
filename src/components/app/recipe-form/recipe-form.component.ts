@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
-import { Recipe } from '../models/recipe';
+import { Recipe } from '../../../models/recipe';
 import * as uuid from "uuid";
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { RecipeService } from '../services/recipe.service';
+import { RecipeService } from '../../../services/recipe.service';
 
 
 @Component({
