@@ -9,7 +9,7 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe: Recipe;
+  recipe: Recipe = new Recipe(null, null, null, null, null, null, null, null, null);
   constructor(private route: ActivatedRoute, public recipeService: RecipeService) { }
 
   ngOnInit(): void {

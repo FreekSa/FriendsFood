@@ -19,7 +19,7 @@ export class RecipeFormComponent implements OnInit {
   selectedPrepTime = "";
   selectedImage: any;
   recipe = new Recipe(null, null, null, null, null, null, null, null, null);
-  copy = new Recipe(null, null, null, null, null, null, null, null, null);
+ // copy = new Recipe(null, null, null, null, null, null, null, null, null);
   recipeForm: NgForm;
   value: Recipe;
   cardImageBase64: string = '';
@@ -27,11 +27,10 @@ export class RecipeFormComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RecipeFormComponent>, @Inject(MAT_DIALOG_DATA) public data,
               private recipeService: RecipeService) { }
-              
+
   ngOnInit(): void {
     if (this.data.recipe) {
-      this.recipe = this.data.recipe;
-      this.copy = this.recipe;
+      this.recipe = JSON.parse(JSON.stringify(this.data.recipe));
       this.selectedPrepTime = this.data.recipe.PrepTime;
     } else {
       this.recipe = new Recipe(null, null, null, [], null, null, null, null, null);
@@ -85,6 +84,7 @@ export class RecipeFormComponent implements OnInit {
         this.selectedPrepTime,
         this.value.Autor
         ,);
+        await this.recipeService.editRecipe(this.recipe).subscribe(() => {this.dialogRef.close(this.recipe)});
     } else {
       this.recipe = new Recipe(null,
         this.value.Title,
@@ -96,11 +96,7 @@ export class RecipeFormComponent implements OnInit {
         this.selectedPrepTime == "" ? "short" : this.selectedPrepTime,
         this.value.Autor
         ,);
-    }
-    if(this.recipe.Id){
-      await this.recipeService.editRecipe(this.recipe).subscribe(() => {this.dialogRef.close(this.recipe)});
-    } else {
-      await this.recipeService.addRecipe(this.recipe).subscribe((res) => {this.recipe = res, this.dialogRef.close(res)});
+        await this.recipeService.addRecipe(this.recipe).subscribe((res) => {this.dialogRef.close(res)});
     }
   }
 }
