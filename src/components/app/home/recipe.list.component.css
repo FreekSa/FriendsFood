@@ -31,7 +31,8 @@
     margin-bottom: 0;
   }
 
-.mat-button{
+.mat-card-actions .mat-button{
   max-width: 115px !important;
   padding: 0 5px 0 5px;
+  margin: 0;
 }

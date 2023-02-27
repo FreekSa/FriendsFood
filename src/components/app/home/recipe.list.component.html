@@ -21,6 +21,9 @@
         <button mat-icon-button (click)="deleteRecipeDialog(recipe)">
           <mat-icon>delete</mat-icon>
         </button>
+        <button mat-icon-button [style.color]="color(recipe.Id)" (click)="addFavorite(recipe.Id)">
+          <mat-icon>favorite</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
