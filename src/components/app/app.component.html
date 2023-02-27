@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container fullscreen>
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div style="margin-left: 1em;">My friends love food</div>
+    <span class="spacer"></span>
+    <div style="margin-right: 1em;">Welkom Freek!</div>
+    <mat-icon>favorite</mat-icon>
+  </mat-toolbar>
+    <mat-sidenav #sidenav mode="side" style="width: 150px;">
+      <mat-nav-list>
+        <a mat-list-item href="/list">Recepten</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>

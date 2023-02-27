@@ -1,0 +1,27 @@
+<div style="margin: 2em;">
+    <button mat-raised-button color="primary" (click)="addOrEditRecipe()">Voeg recept toe
+    </button>
+  <div class="row justify-content-center" fxLayoutAlign="start start">
+    <mat-card class="card" *ngFor="let recipe of recipes">
+      <mat-card-header class="header" style="height: max-content;">
+        <mat-card-title>{{recipe.Title}}</mat-card-title>
+        <mat-card-subtitle>{{recipe.Vegan ? "Vegan" : "Not vegan"}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+          <img mat-card-image class="image" [src]="recipe.Picture" alt="picture">
+        </div>
+        <div class="row">
+          <div align="right" style="margin-right: 1em;">{{recipe.Autor}}</div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions style="margin: auto 0 0; ">
+        <button mat-button (click)="addOrEditRecipe(recipe)">Wijzig recept</button>
+        <button mat-button [routerLink]="['/home',recipe.Id]">Toon recept</button>
+        <button mat-icon-button (click)="deleteRecipeDialog(recipe)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -9,11 +9,11 @@ import { DeleteRecipeComponent } from '../delete-recipe/delete-recipe.component'
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './recipe.list.component.html',
+  styleUrls: ['./recipe.list.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class RecipeListComponent implements OnInit {
   // test to display 10 cards
   cards: Array<number> = [];
   // array of mockdata
