@@ -1,10 +1,3 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>My friends love food</span>
-    <span class="spacer"></span>
-</mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="side" style="width: 150px;">
         <mat-nav-list>
@@ -18,8 +11,8 @@
                     <div *ngIf="recipe?.Id" class="justify-content-center">
                         <h1>{{recipe.Title}}</h1>
                         <h5>Auteur: {{recipe.Autor}}</h5>
-                        <div>
-                            <mat-chip-list #ingredients [ngModel]="recipe?.Ingredients" name="ingredients">
+                        <div *ngIf="recipe.Ingredients[0] != ' '">
+                            <mat-chip-list [ngModel]="recipe.Ingredients">
                                 <mat-chip *ngFor="let ingredient of recipe.Ingredients">
                                     {{ingredient}}
                                 </mat-chip>
@@ -42,5 +35,3 @@
                 </div>
             </div>
         </div>
-    </mat-sidenav-content>
-</mat-sidenav-container>

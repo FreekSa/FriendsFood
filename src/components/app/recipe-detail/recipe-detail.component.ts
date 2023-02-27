@@ -15,9 +15,10 @@ export class RecipeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params =>{const id = params['Id']; this.getRecipe(id);});
   }
-
+  
   async getRecipe(id){
-    await this.recipeService.getRecipe(id).subscribe((res: Recipe) => this.recipe = res);
+    await this.recipeService.getRecipe(id).subscribe((res: Recipe) => {this.recipe = res; console.log(this.recipe);});
+    
   }
 
 }

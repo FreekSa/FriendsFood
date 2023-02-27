@@ -73,7 +73,7 @@ export class RecipeListComponent implements OnInit {
     this.favorites.push(id);
   }
 
-  color(id: string): string {
+  colorFavorite(id: string): string {
     if (this.favorites.findIndex(x => x == id) > -1) {
       return 'red';
     }

@@ -11,11 +11,11 @@ export class RecipeService {
  host = "http://192.168.1.19:" + this.port;
   constructor(public http: HttpClient) { }
 
-  getRecipes(): any{
-    return this.http.get<Recipe>(this.host + '/recipes');
+  getRecipes(): Observable<Recipe[]>{
+    return this.http.get<Recipe[]>(this.host + '/recipes');
   }
 
-  getRecipe(id: String): any{
+  getRecipe(id: String): Observable<Recipe>{
     return this.http.get<Recipe>(this.host + '/recipes/' + id);
   }
 
