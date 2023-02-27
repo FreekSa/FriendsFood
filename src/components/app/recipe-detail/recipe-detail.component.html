@@ -14,7 +14,7 @@
     <mat-sidenav-content>
         <div style="margin: 2em;">
             <div class="row">
-                <div class="col">
+                <div class="col-8">
                     <div *ngIf="recipe?.Id" class="justify-content-center">
                         <h1>{{recipe.Title}}</h1>
                         <h5>Auteur: {{recipe.Autor}}</h5>
@@ -34,11 +34,11 @@
                                 <mat-checkbox color="primary" [disabled]="true" [class.mat-checkbox-disabled]="false" #vegan name="Vegan" [ngModel]="recipe?.Vegan" style="margin-left: 1em;">Vegan </mat-checkbox>
                             </div>
                         </div>
-                        <pre class="recipeDescription">{{recipe.Description}}</pre>
+                        <pre class="descriptionBox" class="recipeDescription">{{recipe.Description}}</pre>
                     </div>
                 </div>
-                <div class="col-md">
-                        <img mat-card-image class="image" [src]="recipe.Picture" alt="picture">
+                <div class="col-4">
+                        <img class="image" [src]="recipe.Picture" alt="picture">
                 </div>
             </div>
         </div>

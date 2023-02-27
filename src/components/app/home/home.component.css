@@ -13,3 +13,25 @@
     justify-content: center;
     text-align: center;
 }
+
+.mat-card{
+  display:flex;
+  flex-direction: column;
+  }
+
+  .mat-card-header{
+    height: 120px !important;
+  }
+
+  .mat-card-actions{
+    padding: 0;
+  }
+
+  .mat-card-content{
+    margin-bottom: 0;
+  }
+
+.mat-button{
+  max-width: 115px !important;
+  padding: 0 5px 0 5px;
+}

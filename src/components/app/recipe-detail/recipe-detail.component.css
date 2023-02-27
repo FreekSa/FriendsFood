@@ -5,5 +5,22 @@
 
 .image {
     max-height: 400px;
+    max-width: 100%;
     margin: 0,1em,0,1em;
+  }
+
+  .descriptionBox{
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 15px;
+  }
+
+  pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
   }
